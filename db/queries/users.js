@@ -20,7 +20,8 @@ const addUser = function(name, email, password, phone) {
     (name, email, password, phone)
     VALUES
     ($1, $2, $3, $4)
-    RETURNING *;`, [name, email, password, phone])
+    RETURNING *;
+    `, [name, email, password, phone])
     .then(data => {
       return data.rows[0];
     })
