@@ -127,3 +127,5 @@ const deleteItem = function(id) {
       console.log(err.message);
     });
 };
+
+module.exports = { getItem, getItems, filterItems, getUsersItems, markItemAsSold, addItem, editItem, deleteItem };

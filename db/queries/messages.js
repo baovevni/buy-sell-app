@@ -26,3 +26,5 @@ const addMessage = function(user_id) {
       console.log(err.message);
     });
 };
+
+module.exports = { getMessages, addMessage };

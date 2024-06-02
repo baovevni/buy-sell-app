@@ -30,4 +30,4 @@ const addUser = function(name, email, password, phone) {
 };
 
 
-module.exports = { getUsers };
+module.exports = { getUser, addUser };

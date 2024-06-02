@@ -28,3 +28,5 @@ const gddFavoriteItems = function(user_id, item_id) {
       console.log(err.message);
     });
 };
+
+module.exports = { getFavoriteItems, gddFavoriteItems };
