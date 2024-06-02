@@ -16,7 +16,7 @@ $(() => {
           ${isFavourite ?
             `<p>&#128525;</p>`
             : ``}
-
+          
         </section>
       </article>
     `

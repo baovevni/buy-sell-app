@@ -17,7 +17,7 @@ $(() => {
   }
   window.itemListings.clearListings = clearListings;
 
-  function addItem(items, isFavourite = false) {
+  function addItems(items, isFavourite = false) {
     clearListings();
     for (const itemId in items) {
       const item = items[itemId];
@@ -25,6 +25,6 @@ $(() => {
       addListing(listing);
     }
   }
-  window.itemListings.addItem = addItems;
+  window.itemListings.addItems = addItems;
 
-}); 
+});
