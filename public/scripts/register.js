@@ -24,11 +24,11 @@ $(() => {
   `);
   window.$registerForm = $registerForm;
 
-  $signUpForm.on('submit', function(event) {
+  $registerForm.on('submit', function(event) {
     event.preventDefault();
 
     const data = $(this).serialize();
-    signUp(data)
+    register(data)
       .then(getMyDetails) //change to getMyDetails name later
       .then((json) => {
         header.update(json.user);
