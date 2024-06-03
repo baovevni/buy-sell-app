@@ -13,7 +13,7 @@ const getFavoriteItems = function(user_id) {
     });
 };
 
-const gddFavoriteItems = function(user_id, item_id) {
+const addFavoriteItem = function(user_id, item_id) {
   return db.query(
     `INSERT
     INTO favorite_items
@@ -29,4 +29,4 @@ const gddFavoriteItems = function(user_id, item_id) {
     });
 };
 
-module.exports = { getFavoriteItems, gddFavoriteItems };
+module.exports = { getFavoriteItems, addFavoriteItem };

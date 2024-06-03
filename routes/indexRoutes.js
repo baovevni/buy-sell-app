@@ -8,16 +8,30 @@
 const express = require('express');
 const router  = express.Router();
 
+
 router.get('/', (req, res) => {
   res.render('index');
 });
 
-router.get('/login', (req, res) => {
+// Log a user in
+router.get("/login", (req, res) => {
   res.render('login');
 });
+router.post("/login", (req, res) => {
+  console.log(res.email);
+  res.redirect("/main");
+})
+
 router.get('/register', (req, res) => {
   res.render('register');
 });
+
+// Log a user out
+router.post("/logout", (req, res) => {
+  req.session.userId = null;
+  res.send({});
+});
+
 router.get('/main', (req, res) => {
   res.render('main');
 });
