@@ -4,14 +4,14 @@ $(() => {
 
   window.views_manager = {};
 
-  window.views_manager.show = function(item) {
+  window.views_manager.show = function(itemView) {
     $newItemForm.detach();
     $itemListings.detach();
     $searchItemForm.detach();
     $loginForm.detach();
     $registerForm.detach();
 
-    switch (item) {
+    switch (itemView) {
       case 'listings':
         $itemListings.appendTo($main);
         break;
