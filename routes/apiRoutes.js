@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/items", (req, res) => {
   database
-    .getAllProperties(req.query, 20)
+    .getAllItems(req.query, 20)
     .then((items) => res.send({ items }))
     .catch((e) => {
       console.error(e);
