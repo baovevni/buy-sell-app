@@ -6,11 +6,92 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const userQueries = require('../db/queries/users');
 
+
+
+// CREATE
+router.post("/", (req, res) => {
+  const user = req.body;
+  userQueries
+    .addUser(user)
+    .then((user) => {
+      if (!user) {
+        return res.send({ error: "error" });
+      }
+
+      req.session.userId = user.id;
+      res.send("🤗");
+    })
+    .catch((err) => res.send(err));
+});
+
+// Return information about the current user (based on cookie value)
+router.get("/", (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    return res.send({ message: "not logged in" });
+  }
+
+  userQueries
+    .getUserById(userId)
+    .then((user) => {
+      if (!user) {
+        return res.send({ error: "no user with that id" });
+      }
+
+      res.send({
+        user: {
+          name: user.name,
+          email: user.email,
+          id: userId,
+        },
+      });
+    })
+    .catch((e) => res.send(e));
+});
+
+
+
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  const { error, user } = authenticateUser(email, password, users);
+
+  if (error) {
+    return res.status(403).render("error", { error, user: null });
+  } else {
+    req.session.user_id = user.id;
+    return res.redirect("/main");
+  }
+});
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  userQueries.getUserByEmail(email).then((user) => {
+    if (!user) {
+      return res.send({ error: "no user with that email" });
+    }
+
+    if (password !== user.password) {
+      return res.send({ error: "error" });
+    }
+
+    req.session.userId = user.id;
+    res.send({
+      user: {
+        name: user.name,
+        email: user.email,
+        id: user.id,
+      },
+    });
+  });
+});
+
+// READ
 router.get('/', (req, res) => {
-  userQueries.getUsers()
+  userQueries
+    .getUsers()
     .then(users => {
       res.json({ users });
     })
