@@ -68,7 +68,7 @@ router.post("/login", (req, res) => {
       return res.send({ error: "error" });
     }
 
-    req.session.userId = user.id;
+    // req.session.userId = user.id;
     res.redirect("/main");
 
   });
