@@ -47,6 +47,34 @@ app.use('/users', usersRoutes);
 app.get('/', (req, res) => {
   res.render('index');
 });
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+app.get('/main', (req, res) => {
+  res.render('main');
+});
+app.get('/messages', (req, res) => {
+  res.render('messages');
+});
+app.get('/add_items', (req, res) => {
+  res.render('add_items');
+});
+app.get('/my_items', (req, res) => {
+  res.render('my_items');
+});
+app.get('/favourites', (req, res) => {
+  res.render('favourites');
+});
+app.get('/item', (req, res) => {
+  res.render('item');
+});
+app.get('/new_item', (req, res) => {
+  res.render('new_item');
+});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
