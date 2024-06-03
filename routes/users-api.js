@@ -54,37 +54,23 @@ router.get("/", (req, res) => {
 
 
 
+
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
-  const { error, user } = authenticateUser(email, password, users);
-
-  if (error) {
-    return res.status(403).render("error", { error, user: null });
-  } else {
-    req.session.user_id = user.id;
-    return res.redirect("/main");
-  }
-});
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-
+  console.log({email});
+  console.log(req.body);
   userQueries.getUserByEmail(email).then((user) => {
     if (!user) {
       return res.send({ error: "no user with that email" });
     }
-
+    console.log(user.password);
     if (password !== user.password) {
       return res.send({ error: "error" });
     }
 
     req.session.userId = user.id;
-    res.send({
-      user: {
-        name: user.name,
-        email: user.email,
-        id: user.id,
-      },
-    });
+    res.redirect("/main");
+
   });
 });
 
@@ -103,3 +89,4 @@ router.get('/', (req, res) => {
 });
 
 module.exports = router;
+
