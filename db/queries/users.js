@@ -18,7 +18,7 @@ const addUser = function(name, email, password, phone) {
     });
 };
 
-// READ by id
+// READ
 const getUserById = function(id) {
   return db.query(
     `SELECT *
@@ -32,7 +32,6 @@ const getUserById = function(id) {
     });
 };
 
-// READY by email
 const getUserByEmail = function(email) {
   return db.query(
     `SELECT *
@@ -46,4 +45,7 @@ const getUserByEmail = function(email) {
     });
 };
 
-module.exports = { getUserById, getUserByEmail, addUser };
+// UPDATE
+// DELETE
+
+module.exports = { addUser, getUserById, getUserByEmail };
