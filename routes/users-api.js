@@ -9,6 +9,23 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/users');
 
+// CREATE
+router.post("/", (req, res) => {
+  const user = req.body;
+  database
+    .addUser(user)
+    .then((user) => {
+      if (!user) {
+        return res.send({ error: "error" });
+      }
+
+      req.session.userId = user.id;
+      res.send("🤗");
+    })
+    .catch((e) => res.send(e));
+  });
+
+// READ
 router.get('/', (req, res) => {
   userQueries.getUsers()
     .then(users => {
@@ -20,5 +37,7 @@ router.get('/', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+
 
 module.exports = router;

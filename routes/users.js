@@ -6,9 +6,13 @@
  */
 
 const express = require("express");
-const database = require("../db/database");
+const database = require("../db/queries/users");
 
 const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.render('index');
+  });
 
 // Create a new user
 router.post("/", (req, res) => {
@@ -27,13 +31,28 @@ router.post("/", (req, res) => {
 });
 
 // Log a user in
+router.get("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (!user) {
+    return res.send({ error: "no user with that email" });
+  }
+
+  if (password !== user.password) {
+    return res.send({ error: "error" });
+  }
+  res.render('login');
+
+});
+
 router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  database.getUserWithEmail(email).then((user) => {
+  database.getUserByEmail(email).then((user) => {
     if (!user) {
-      return res.send({ error: "no user with that id" });
+      return res.send({ error: "no user with that email" });
     }
 
     if (password !== user.password) {
@@ -48,6 +67,7 @@ router.post("/login", (req, res) => {
         id: user.id,
       },
     });
+    res.redirect("/main");
   });
 });
 
@@ -58,7 +78,7 @@ router.post("/logout", (req, res) => {
 });
 
 // Return information about the current user (based on cookie value)
-router.get("/me", (req, res) => {
+router.get("/", (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
     return res.send({ message: "not logged in" });
