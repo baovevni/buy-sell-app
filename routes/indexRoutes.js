@@ -15,33 +15,33 @@ router.get('/', (req, res) => {
 
 // Log a user in
 router.get("/login", (req, res) => {
-  res.render('login');
+  res.render('login', { user: req.user });
 });
 
 router.get('/register', (req, res) => {
-  res.render('register');
+  res.render('register', { user: req.user });
 });
 
 router.get('/main', (req, res) => {
-  res.render('main');
+  res.render('main',{ user: req.user });
 });
 router.get('/messages', (req, res) => {
-  res.render('messages');
+  res.render('messages', { user: req.user });
 });
 router.get('/add_items', (req, res) => {
-  res.render('add_items');
+  res.render('add_items', { user: req.user });
 });
 router.get('/my_items', (req, res) => {
-  res.render('my_items');
+  res.render('my_items', { user: req.user });
 });
 router.get('/favourites', (req, res) => {
-  res.render('favourites');
+  res.render('favourites', { user: req.user });
 });
 router.get('/item', (req, res) => {
-  res.render('item');
+  res.render('item', { user: req.user });
 });
 router.get('/new_item', (req, res) => {
-  res.render('new_item');
+  res.render('new_item', { user: req.user });
 });
 
 module.exports = router;
