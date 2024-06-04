@@ -18,7 +18,7 @@ router.get("/login", (req, res) => {
   res.render('login');
 });
 router.post("/login", (req, res) => {
-  console.log(res.email);
+  // req.session.user_id = newUser.id;
   res.redirect("/main");
 })
 
@@ -28,8 +28,9 @@ router.get('/register', (req, res) => {
 
 // Log a user out
 router.post("/logout", (req, res) => {
-  req.session.userId = null;
-  res.send({});
+  console.log("logout");
+  req.session.user_id = null;
+  res.redirect("/main");
 });
 
 router.get('/main', (req, res) => {
