@@ -10,15 +10,19 @@ const router  = express.Router();
 const userQueries = require('../db/queries/favorite_items');
 
 
-router.get("/favourites", (req, res) => {
+router.get('/', (req, res) => {
   const userId = req.session.userId;
+  console.log(userId);
   if (!userId) {
     return res.send({ error: "error" });
   }
 
   userQueries
     .getFavoriteItems(userId)
-    .then((favourites) => res.send({ favourites }))
+    .then((favorites) => {
+      console.log(favorites);
+      res.render('favourites', { user: req.session.userId, items: favorites });
+    })
     .catch((err) => {
       console.error(err);
       res.send(err);

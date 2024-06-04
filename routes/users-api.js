@@ -9,7 +9,17 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/users');
 
+// Log a user in
+router.get("/login", (req, res) => {
+  res.render('login', { user: req.session.userId });
+});
 
+router.get('/register', (req, res) => {
+  res.render('register', { user: req.session.userId });
+});
+// router.post('/register', (req, res) => {
+//   res.render('register', { user: req.session.userId });
+// });
 
 // CREATE
 router.post("/", (req, res) => {
@@ -77,9 +87,8 @@ router.post("/login", (req, res) => {
 
 // Log a user out
 router.post("/logout", (req, res) => {
-  console.log("LOGOUT");
   req.session.userId = null;
-  res.redirect("/login");
+  res.redirect("/users/login");
 });
 
 // READ

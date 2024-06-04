@@ -6,6 +6,7 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
+const itemHelpers = require('./db/queries/items');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -33,29 +34,36 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const indexRoutes = require('./routes/indexRoutes');
 const usersRoutes = require('./routes/users-api');
 const itemsRoutes = require('./routes/items-api');
 const favoritesRoutes = require('./routes/favorites-api');
 const messagesRoutes = require('./routes/messages-api');
 
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/', indexRoutes);
-app.use('/users', usersRoutes); //change to /api/
-app.use('/api/users', usersRoutes);
-app.use('/api/items', itemsRoutes);
-app.use('/api/favorites', favoritesRoutes);
-app.use('/api/messages', messagesRoutes);
+app.use('/users', usersRoutes);
+app.use('/items', itemsRoutes);
+app.use('/favorites', favoritesRoutes);
+app.use('/messages', messagesRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+app.get('/', (req, res) => {
+  res.redirect('/main');
+});
 
-
+app.get('/main', (req, res) => {
+  itemHelpers.getItems()
+  .then((items) => {
+    console.log(items);
+    res.render('main',{ user: req.session.userId, items: items });
+  })
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

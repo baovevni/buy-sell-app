@@ -14,72 +14,21 @@
 
   <body>
     <%- include('partials/_header') %>
-    <br><br>
     <div class="card-deck">
-      <div class="card">
-        <img class="card-img-top" src="shoes.jpg" alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
+      <% for (const item of items) { %>
+        <div class="card">
+          <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            <p class="card-text"><small class="text-muted"><%= item.price %></small></p>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="shoes.jpg" alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-      </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-        </div>
-
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-        </div>
-
-      </div>
-    </div>
-
-    <br><br>
-    <div class="card-deck">
-      <div class="card">
-        <img class="card-img-top" src="..." alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-        </div>
-
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="..." alt="shoes image">
-        <div class="card-body">
-          <h5 class="card-title">Ballet shoes</h5>
-          <p class="card-text"><small class="text-muted">Price : 230$</small></p>
-        </div>
-
-      </div>
+      <% } %>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Mix Price" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
 
 
