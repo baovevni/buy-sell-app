@@ -43,7 +43,7 @@ const messagesRoutes = require('./routes/messages-api');
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/', indexRoutes);
-app.use('/users', usersRoutes);
+app.use('/users', usersRoutes); //change to /api/
 app.use('/api/users', usersRoutes);
 app.use('/api/items', itemsRoutes);
 app.use('/api/favorites', favoritesRoutes);

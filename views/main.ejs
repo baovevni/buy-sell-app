@@ -22,6 +22,42 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Buy/Sell</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/add_items">ADD ITEMS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/my_items">MY ITEMS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/messages">MESSAGES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/favourite">FAVORITES</a>
+          </li>
+          <li class="nav-item">
+            <form action="/api/users/logout" method="post">
+              <button class="nav-link" type="submit">LOGOUT</button>
+            </form>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" placeholder="Mix Price" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
     <br><br>
     <div class="card-deck">
       <div class="card">

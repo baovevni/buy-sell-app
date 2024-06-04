@@ -56,6 +56,7 @@ router.get("/", (req, res) => {
 
 
 router.post("/login", (req, res) => {
+  console.log("Login route");
   const { email, password } = req.body;
   console.log({email});
   console.log(req.body);
@@ -72,6 +73,13 @@ router.post("/login", (req, res) => {
     res.redirect("/main");
 
   });
+});
+
+// Log a user out
+router.post("/logout", (req, res) => {
+  console.log("LOGOUT");
+  req.session.userId = null;
+  res.redirect("/login");
 });
 
 // READ
