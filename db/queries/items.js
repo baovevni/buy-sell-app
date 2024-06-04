@@ -1,5 +1,24 @@
 const db = require('../connection');
 
+// CREATE
+
+const addItem = function(name, description, size, price, imageURL, user_id, sold) {
+  return db.query(
+    `INSERT
+    INTO items
+    (name, description, size, price, imageURL, user_id, sold)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    RETURNING *;
+    `, [name, description, size, price, imageURL, user_id, sold])
+    .then(data => {
+      return data.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+// READ
 const getItem = function(id) {
   return db.query(
     `SELECT *
@@ -59,6 +78,7 @@ const getUsersItems = function(id) {
     });
 };
 
+// UPDATE
 const markItemAsSold = function(id) {
   return db.query(
     `UPDATE items
@@ -67,22 +87,6 @@ const markItemAsSold = function(id) {
     WHERE id = $1
     RETURNING *;
     `, [id])
-    .then(data => {
-      return data.rows[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
-
-const addItem = function(name, description, size, price, imageURL, user_id, sold) {
-  return db.query(
-    `INSERT
-    INTO items
-    (name, description, size, price, imageURL, user_id, sold)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
-    RETURNING *;
-    `, [name, description, size, price, imageURL, user_id, sold])
     .then(data => {
       return data.rows[0];
     })
@@ -113,6 +117,7 @@ const editItem = function(name, description, size, price, imageURL, sold) {
     });
 };
 
+// DELETE
 const deleteItem = function(id) {
   return db.query(
     `DELETE
