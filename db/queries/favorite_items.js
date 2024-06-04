@@ -22,7 +22,8 @@ const getFavoriteItems = function(user_id) {
   return db.query(
     `SELECT *
     FROM favorite_items
-    WHERE user_id = $1;`, [user_id])
+    JOIN items ON item_id = items.id
+    WHERE favorite_items.user_id = $1;`, [user_id])
     .then(data => {
       return data.rows;
     })

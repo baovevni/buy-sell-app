@@ -16,40 +16,19 @@
 
 <body>
   <%- include('partials/_header') %>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Search">
-      <input class="form-control mr-sm-2" type="search" placeholder="Mix Price" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-
-
     <br><br>
-    <form>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">messages</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="5"></textarea><br>
-        <button type="submit" class="btn btn-primary" cols="3">Reply</button>
-        <button type="submit" class="btn btn-primary" cols="3">Delete</button>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">messages</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="5"></textarea><br>
-        <button type="submit" class="btn btn-primary" cols="3">Reply</button>
-        <button type="submit" class="btn btn-primary" cols="3">Delete</button>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">messages</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="5"></textarea><br>
-        <button type="submit" class="btn btn-primary" cols="3">Reply</button>
-        <button type="submit" class="btn btn-primary" cols="3">Delete</button>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">messages</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="5"></textarea><br>
-        <button type="submit" class="btn btn-primary" cols="3">Reply</button>
-        <button type="submit" class="btn btn-primary" cols="3">Delete</button>
-      </div>
-    </form>
+    <% for (const message of messages) { %>
+      <p><%= message.text %></p>
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">messages</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="5"></textarea><br>
+          <button type="submit" class="btn btn-primary" cols="3">Reply</button>
+          <button type="submit" class="btn btn-primary" cols="3">Delete</button>
+        </div>
+      </form>
+      <% } %>
+
 
 
 

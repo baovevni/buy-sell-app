@@ -9,8 +9,19 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/items');
 
+router.get('/add_item', (req, res) => {
+  res.render('add_item', { user: req.session.userId });
+});
+
+router.get('/item', (req, res) => {
+  res.render('item', { user: req.session.userId });
+});
+router.get('/new_item', (req, res) => {
+  res.render('new_item', { user: req.session.userId });
+});
+
 // CREATE
-router.post("/items", (req, res) => {
+router.post("/", (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
     return res.send({ error: "error" });
@@ -18,10 +29,11 @@ router.post("/items", (req, res) => {
 
   const newItem = req.body;
   newItem.user_id = userId;
-  database
+  console.log(newItem);
+  userQueries
     .addItem(newItem)
     .then((item) => {
-      res.send(item);
+      res.redirect("/items");
     })
     .catch((e) => {
       console.error(e);
@@ -30,10 +42,10 @@ router.post("/items", (req, res) => {
 });
 
 // READ
-router.get("/items", (req, res) => {
+router.get("/", (req, res) => {
   userQueries
-    .getItems(req.query)
-    .then((items) => res.send({ items }))
+    .getUsersItems(req.session.userId)
+    .then((items) => res.render('my_items', { user:req.session.userId, items }))
     .catch((err) => {
       console.error(err);
       res.send(err);

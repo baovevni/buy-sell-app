@@ -2,14 +2,14 @@ const db = require('../connection');
 
 // CREATE
 
-const addItem = function(name, description, size, price, imageURL, user_id, sold) {
+const addItem = function(newItem) {
   return db.query(
     `INSERT
     INTO items
-    (name, description, size, price, imageURL, user_id, sold)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    (name, description, size, price, imageURL, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;
-    `, [name, description, size, price, imageURL, user_id, sold])
+    `, [newItem.name, newItem.description, newItem.size, newItem.price, newItem.imageURL, newItem.user_id])
     .then(data => {
       return data.rows[0];
     })

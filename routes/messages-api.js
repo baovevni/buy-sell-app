@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const userQueries = require('../db/queries/items');
+const userQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
-  userQueries.getItems()
-    .then(items => {
-      res.json(items);
+  userQueries.getMessages(req.session.userId)
+    .then( messages => {
+      console.log(messages);
+      res.render('messages', { user: req.session.userId, messages: messages} );
     });
 });
 
