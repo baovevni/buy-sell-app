@@ -9,13 +9,6 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/items');
 
-router.get('/add_item', (req, res) => {
-  res.render('add_item', { user: req.session.userId });
-});
-
-router.get('/item', (req, res) => {
-  res.render('item', { user: req.session.userId });
-});
 router.get('/new_item', (req, res) => {
   res.render('new_item', { user: req.session.userId });
 });
@@ -50,6 +43,13 @@ router.get("/", (req, res) => {
       console.error(err);
       res.send(err);
     });
+});
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  userQueries
+  .getItem(id)
+  .then((item) => res.render('item', { user:req.session.userId, item }));
 });
 
 module.exports = router;
