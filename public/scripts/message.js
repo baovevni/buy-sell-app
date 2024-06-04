@@ -49,12 +49,6 @@ $(() => {
     addMessage(message);
   });
 
-  $('#messages').on('submit', '.update-form', function(event) {
-    event.preventDefault();
-    const id = $(this).data('id');
-    const message = $(this).find('#message').val();
-    editMessage(id, message);
-  });
 
   $('#messages').on('click', '.delete-btn', function() {
     const id = $(this).data('id');
