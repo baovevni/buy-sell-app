@@ -44,4 +44,39 @@ router.post("/item", (req, res) => {
     });
 });
 
+//when the favorite button is clicked, it will add the item to the favorites table
+router.post("/item/:id", (req, res) => {
+  const userId = req.session.userId;
+  const itemId = req.params.id;
+  if (!userId) {
+    return res.send({ error: "Please login to add to favorites"});
+  }
+
+  userQueries
+    .addFavoriteItem(userId, itemId)
+    .then((favourites) => res.send({ favourites }))
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+
+});
+
+////if user unfavorites the item, it will remove the item from the favorites table
+router.delete("/item/:id", (req, res) => {
+  const userId = req.session.userId;
+  const itemId = req.params.id;
+  if (!userId) {
+    return res.send({ error: "Please login to add to favorites"});
+  }
+
+  userQueries
+    .removeFavoriteItem(userId, itemId)
+    .then((favourites) => res.send({ favourites }))
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+
+});
 module.exports = router;
