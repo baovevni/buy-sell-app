@@ -19,15 +19,23 @@
     <%- include('partials/_header') %>
 
     <br><br>
+
     <div class="card-deck">
-      <% for (const item of items) { %>
+      <% for (let item of items) { %>
+        <a href="/items/<%= item.id %>">
         <div class="card">
+
+
+          <form action="/favorites/<%= item.id %>/delete" method="POST">
+            <button type="submit" class="btn btn-primary">Favourite</button>
+          </form>
           <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
           <div class="card-body">
             <h5 class="card-title"><%= item.name %></h5>
             <p class="card-text"><small class="text-muted"><%= item.price %></small></p>
           </div>
         </div>
+        </a>
       <% } %>
     </div>
 
