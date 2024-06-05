@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
 
   <title>MY_ITEMS</title>
 </head>
@@ -16,7 +17,31 @@
 
 <body>
   <%- include('partials/_header') %>
-    <br><br>
+
+  <div class="container mt-3">
+    <% for (const message of messages) { %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text"><%= message.text %></p>
+          <div class="form-box">
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Reply:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <br>
+                <div class="button-group">
+                  <button type="submit" class="btn btn-primary" cols="3">Reply</button>
+                  <button type="submit" class="btn btn-danger" cols="3">Delete</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  
+    <!-- <br><br>
     <% for (const message of messages) { %>
       <p><%= message.text %></p>
       <form>
@@ -27,7 +52,7 @@
           <button type="submit" class="btn btn-primary" cols="3">Delete</button>
         </div>
       </form>
-      <% } %>
+      <% } %> -->
 
 
 
