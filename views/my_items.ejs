@@ -27,8 +27,18 @@
             <p class="card-text"><small class="text-muted">
                 <%= item.price / 100 %>
               </small></p>
+
+                <% if (item.sold) {%>
+                  <h5 class="card-title">Sold</h5>
+                <% } else { %>
+                  <h5 class="card-title"></h5>
+                <% } %>
+
             <form action="/items/<%= item.id %>/delete" method="POST">
               <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+            <form action="/items/<%= item.id %>/sold" method="POST">
+              <button type="submit" class="btn btn-primary">Sold</button>
             </form>
           </div>
         </div>
