@@ -38,7 +38,7 @@
           <label class="description-label">
             <%= item.description %>
           </label>
-          <p class="card-text"><small class="text-muted">Price :$<%= item.price %></small></p>
+          <p class="card-text"><small class="text-muted">Price :$<%= item.price / 100 %></small></p>
           <div class="card-action">
             <button type="submit" class="btn btn-primary">Buy</button>
             <form action="/messages" method="POST">
