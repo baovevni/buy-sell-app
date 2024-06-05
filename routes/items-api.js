@@ -20,7 +20,6 @@ router.post('/items', (req, res) => {
   }
 
   const newItem = req.body;
-  newItem.user_id = userId;
   userQueries
     .addItem(newItem)
     .then((item) => {
