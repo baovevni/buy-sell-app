@@ -1,0 +1,56 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #555;
+}
+
+.card-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+.favorite-form {
+  position: relative;
+}
+
+.fa-heart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #f50f0f;
+}
+
+
+.card-img-top {
+  max-width: 250px; 
+  height: auto;
+  float: left;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.description-label {
+  font-size: 18px;
+  color: #555;
+}
+.big-div {
+  font-size: 20px; 
+}
