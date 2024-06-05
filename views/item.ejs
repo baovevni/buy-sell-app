@@ -18,19 +18,23 @@
     <br><br>
 
     <div class="card mb-10" style="max-width: 1000px;">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="..." alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Ballet shoes</h5>
-            <i class="bi bi-heart-fill"></i>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
-            <div class="card-body">
-              <a href="#" class="card-link">Buy</a>
-              <a href="#" class="card-link">Message</a>
+        <div class="col-md-8">
+          <div class="card-deck">
+            <div class="card">
+              <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.name %>
+                </h5>
+                <p class="card-text"><small class="text-muted">
+                    <%= item.price %>
+                  </small></p>
+                <div class="card-body">
+                  <a href="#" class="card-link">Buy</a>
+                  <a href="#" class="card-link">Message</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
