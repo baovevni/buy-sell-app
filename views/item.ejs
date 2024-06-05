@@ -37,7 +37,7 @@
                 <form action="/favorites/<%= item.id %>" method="POST">
                   <button type="submit" class="btn btn-primary">Favourite</button>
                 </form>
-                <a href="#" class="card-link">Buy</a>
+                <button type="submit" class="btn btn-primary">Buy</button>
                 <form action="/messages" method="POST">
                   <input type="hidden" name="item_id" value="<%= item.id %>">
                   <input type="hidden" name="owner_id" value="<%= item.user_id %>">

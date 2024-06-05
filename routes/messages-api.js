@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
   const owner_id = req.body.owner_id;
   userQueries.addMessage(text, item_id, owner_id)
     .then(() => {
-      res.redirect("/main");
+      res.redirect(`/items/${item_id}`);
     });
 });
 
