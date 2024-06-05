@@ -13,6 +13,39 @@ router.get('/add_item', (req, res) => {
   res.render('add_item', { user: req.session.userId });
 });
 
+router.post('/items', (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    return res.send({ error: "error" });
+  }
+
+  const newItem = req.body;
+  newItem.user_id = userId;
+  userQueries
+    .addItem(newItem)
+    .then((item) => {
+      res.redirect("/items");
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
+router.post('/:id/delete', (req, res) => {
+  const itemId = req.params.id;
+  const userId = req.session.userId;
+
+  userQueries.deleteItem(itemId)
+    .then((item) => {
+      res.redirect("/items");
+    })
+    .catch((err) => {
+      console.error(`Error deleting item with ID ${itemId}:`, err);
+      res.status(500).send({ error: "An error occurred while deleting the item" });
+    });
+});
+
 router.get('/:id', (req, res) => {
   const itemId = req.params.id;
   const userId = req.session.userId;
