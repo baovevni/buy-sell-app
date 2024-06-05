@@ -21,6 +21,9 @@
           <div class="card-body">
             <h5 class="card-title"><%= item.name %></h5>
             <p class="card-text"><small class="text-muted"><%= item.price %></small></p>
+            <form action="/items/<%= item.id %>/delete" method="POST">
+              <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
           </div>
         </div>
       <% } %>
