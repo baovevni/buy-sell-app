@@ -46,7 +46,6 @@ router.post("/item", (req, res) => {
     });
 });
 
-
 router.post("/:id", (req, res) => {
   const userId = req.session.userId;
   const itemId = req.params.id;
