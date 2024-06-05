@@ -102,4 +102,19 @@ router.get("/", (req, res) => {
     });
 });
 
+
+router.post('/:id/sold', (req, res) => {
+  const itemId = req.params.id;
+
+  userQueries.markItemAsSold(itemId)
+    .then((item) => {
+      res.redirect("/items");
+    })
+    .catch((err) => {
+      console.error(`Error marking item with ID ${itemId} as sold:`, err);
+      res.status(500).send({ error: "An error occurred while marking the item as sold" });
+    });
+});
+
+
 module.exports = router;

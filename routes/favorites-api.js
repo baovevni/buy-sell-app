@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const lodash = require('lodash');
 const userQueries = require('../db/queries/favorite_items');
 
 
@@ -20,8 +21,9 @@ router.get('/', (req, res) => {
   userQueries
     .getFavoriteItems(userId)
     .then((favorites) => {
-      console.log(favorites);
-      res.render('favourites', { user: req.session.userId, items: favorites });
+      const unique = lodash.uniqBy(favorites, 'item_id');
+      console.log(unique);
+      res.render('favourites', { user: req.session.userId, items: unique });
     })
     .catch((err) => {
       console.error(err);
@@ -43,7 +45,6 @@ router.post("/item", (req, res) => {
       res.send(err);
     });
 });
-
 
 router.post("/:id", (req, res) => {
   const userId = req.session.userId;
