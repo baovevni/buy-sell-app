@@ -13,9 +13,27 @@ router.get('/add_item', (req, res) => {
   res.render('add_item', { user: req.session.userId });
 });
 
-router.get('/item', (req, res) => {
-  res.render('item', { user: req.session.userId });
+router.get('/:id', (req, res) => {
+  const itemId = req.params.id;
+  const userId = req.session.userId;
+
+  userQueries.getItem(itemId)
+    .then((item) => {
+      if (!item) {
+        console.log(`Item with ID ${itemId} not found`);
+        return res.status(404).send("Item not found");
+      }
+
+      console.log(`Item found: ${JSON.stringify(item)}`);
+      res.render('item', { user: userId, item });
+    })
+    .catch((err) => {
+      console.error(`Error retrieving item with ID ${itemId}:`, err);
+      res.status(500).send({ error: "An error occurred while retrieving the item" });
+    });
 });
+
+
 router.get('/new_item', (req, res) => {
   res.render('new_item', { user: req.session.userId });
 });
