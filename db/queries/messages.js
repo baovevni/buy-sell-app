@@ -11,6 +11,7 @@ const addMessage = function(text, item_id, user_id) { // we have to make sure th
     RETURNING *;
     `, [text, item_id, user_id])
     .then(data => {
+      console.log('DATA.ROWS', data.rows);
       return data.rows;
     })
     .catch((err) => {
@@ -34,11 +35,13 @@ const getMessages = function(user_id) {
 
 // UPDATE
 // DELETE
-const deleteMessages = function(user_id) {
+const deleteMessage = function(user_id, id) {
   return db.query(
     `DELETE
     FROM messages
-    WHERE user_id = $1;`, [user_id])
+    WHERE user_id = $1
+    AND id = $2
+    RETURNING *;`, [user_id, id])
     .then(data => {
       return data.rows;
     })
@@ -47,4 +50,4 @@ const deleteMessages = function(user_id) {
     });
 };
 
-module.exports = { getMessages, addMessage, deleteMessages };
+module.exports = { getMessages, addMessage, deleteMessage };

@@ -32,7 +32,7 @@
                 <h5 class="card-title text-primary mb-0">
                   <%= item.name %>
                 </h5>
-                <p class="card-text text-secondary"><small>Price: $<%= item.price %></small></p>
+                <p class="card-text text-secondary"><small>Price: $<%= item.price / 100 %></small></p>
               </div>
             </a>
             <form action="/favorites/<%= item.id %>/delete" method="POST">
@@ -42,31 +42,6 @@
         </div>
       <% } %>
     </div>
-    
-
-    <!-- <br><br>
-
-    <div class="card-deck">
-      <% for (let item of items) { %>
-        <a href="/items/<%= item.id %>">
-        <div class="card">
-
-          <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= item.name %></h5>
-            <p class="card-text"><small class="text-muted"><%= item.price %></small></p>
-            <form action="/favorites/<%= item.id %>/delete" method="POST">
-              <button type="submit" class="btn "><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
-            </form>
-          </div>
-        </div>
-        </a>
-      <% } %>
-    </div> -->
-
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
