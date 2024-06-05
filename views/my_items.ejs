@@ -16,6 +16,21 @@
 
 <body>
   <%- include('partials/_header') %>
+  <div class="container mt-3  rounded p-0 custom-padding">
+    <div class="row">
+      <div class="col-md-6 offset-md-6">
+        <form class="form-inline">
+          <div class="input-group">
+            <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price">
+            <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
     <div class="card-deck">
       <% for (const item of items) { %>
         <div class="card">
@@ -24,7 +39,7 @@
             <h5 class="card-title">
               <%= item.name %>
             </h5>
-            <p class="card-text"><small class="text-muted">
+            <p class="card-text"><small class="text-muted">Price: $
                 <%= item.price / 100 %>
               </small></p>
             <form action="/items/<%= item.id %>/delete" method="POST">
@@ -33,11 +48,6 @@
           </div>
         </div>
         <% } %>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Mix Price" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
     </div>
 
 
