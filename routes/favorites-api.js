@@ -54,7 +54,7 @@ router.post("/:id", (req, res) => {
 
   userQueries
     .addFavoriteItem(userId, itemId)
-    .then((favourites) => res.send({ favourites }))
+    .then((favourites) => res.redirect('/items/' + itemId))
     .catch((err) => {
       console.error(err);
       res.send(err);
@@ -62,7 +62,7 @@ router.post("/:id", (req, res) => {
 });
 
 
-router.delete("/:id", (req, res) => {
+router.post("/:id/delete", (req, res) => {
   const userId = req.session.userId;
   const itemId = req.params.id;
   if (!userId) {
@@ -70,11 +70,12 @@ router.delete("/:id", (req, res) => {
   }
 
   userQueries
-    .removeFavoriteItem(userId, itemId)
-    .then((favourites) => res.send({ favourites }))
+    .removeFavoriteItem(itemId)
+    .then((favourites) => res.redirect('/favorites'))
     .catch((err) => {
       console.error(err);
       res.send(err);
     });
 });
+
 module.exports = router;

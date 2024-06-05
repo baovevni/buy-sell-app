@@ -30,6 +30,9 @@
             <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
             </a>
             <div class="card-body">
+              <form method="post" action="/favorites/<%= item.id %>">
+                    <button type="submit" class="btn btn-danger">Favorite</button>
+              </form>
               <a href="/items/<%= item.id %>">
               <h5 class="card-title"><%= item.name %></h5>
               </a>

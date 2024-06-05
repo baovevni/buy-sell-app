@@ -20,7 +20,7 @@
 
     <br><br>
     <div class="card-deck">
-      <% for (const item of items) { %>
+      <% for (let item of items) { %>
         <div class="card">
           <a href="/items/<%= item.id %>">
           <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
@@ -29,6 +29,10 @@
             <a href="/items/<%= item.id %>">
             <h5 class="card-title"><%= item.name %></h5>
             </a>
+
+            <form method="post" action="/favorites/<%= item.id %>/delete">
+              <button type="submit" class="btn btn-danger">Favorite</button>
+            </form>
             <p class="card-text"><small class="text-muted"><%= item.price %></small></p>
           </div>
         </div>

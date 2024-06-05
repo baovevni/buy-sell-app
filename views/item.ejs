@@ -35,6 +35,10 @@
                     <%= item.price %>
                   </small></p>
                 <div class="card-body">
+
+                  <form method="post" action="/favorites/<%= item.id %>">
+                    <button type="submit" class="btn btn-danger">Favorite</button>
+                  </form>
                   <a href="#" class="card-link">Buy</a>
                   <a href="#" class="card-link">Message</a>
                 </div>
