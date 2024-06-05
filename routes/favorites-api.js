@@ -44,4 +44,39 @@ router.post("/item", (req, res) => {
     });
 });
 
+
+router.post("/:id", (req, res) => {
+  const userId = req.session.userId;
+  const itemId = req.params.id;
+  if (!userId) {
+    return res.send({ error: "error" });
+  }
+
+  userQueries
+    .addFavoriteItem(userId, itemId)
+    .then((favourites) => res.redirect('/items/' + itemId))
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
+
+
+router.post("/:id/delete", (req, res) => {
+  const userId = req.session.userId;
+  const itemId = req.params.id;
+  if (!userId) {
+    return res.send({ error: "error" });
+  }
+
+  userQueries
+    .removeFavoriteItem(itemId)
+    .then((favourites) => res.redirect('/favorites'))
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
+
 module.exports = router;
+
