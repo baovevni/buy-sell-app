@@ -7,9 +7,12 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
 const itemHelpers = require('./db/queries/items');
+const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.use('/docs', express.static(path.join(__dirname, 'docs')));
 
 app.set('view engine', 'ejs');
 
