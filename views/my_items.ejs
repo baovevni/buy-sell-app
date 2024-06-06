@@ -9,50 +9,45 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/my_items.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/hover.css" />
 
   <title>MY ITEMS</title>
 </head>
 
-
 <body>
   <%- include('partials/_header') %>
 
-      <div class="container mt-3  rounded p-0 custom-padding">
-        <div class="row">
-          <div class="col-md-6 offset-md-6">
-            <form class="form-inline">
-              <div class="input-group">
-                <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price">
-                <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit">Search</button>
-                </div>
-              </div>
-            </form>
+  <div class="container-fluid mt-3  rounded  no-padding">
+    <div class = "row justify-content-end search-form-container">
+      <form class="form-inline search-form" method="POST" action="/items/search">
+        <div class="input-group">
+          <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price" name="min">
+          <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price" name="max">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
           </div>
         </div>
+      </form>
+    </div>
         <br>
-        <div class="row">
+        <div class="row box-containt">
           <% for (const item of items) { %>
             <div class="col-md-3 mb-4">
               <div class="card h-100 border border-primary rounded shadow">
                 <a href="/items/<%= item.id %>">
                   <% if (item.sold) {%>
                     <div class="sold-out-overlay">
-                      
                       <img class="sold-out-image" src="/docs/sold.png" alt="Sold Out" >
                     </div>
                   <% } %>
                   <img class="card-img-top img-fluid" src="<%= item.imageurl %>" alt="<%= item.name %>"
                     style="height: 200px; object-fit: cover;">
                   <div class="card-body">
-                    <h5 class="card-title">
+                    <h5 class="card-title text-primary mb-0">
                       <%= item.name %>
                     </h5>
-                    
-                    <p class="card-text"><small class="text-muted">Price:  $<%= item.price / 100 %>
+                    <p class="card-text  text-secondary"><small>Price:  $<%= item.price / 100 %>
                       </small></p>
                   </div>
                 </a>
