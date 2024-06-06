@@ -1,21 +1,21 @@
 .no-padding {
-  padding: 0; /* Reset padding */
+  padding: 0; 
 }
 
 .search-form-container {
   // display: flex;
   // justify-content: flex-end;
-  padding-right: 84px; 
-  padding-top: 10px; /* Padding on the top side */
+  padding-right: 215px; //84px
+  padding-top: 10px; 
 }
 
 .box-containt {
-  padding-left: 70px; /* Adjust the padding on the left side */
-  padding-right: 70px; /* Adjust the padding on the right side */
+  padding-left: 200px; /*  left side 70px*/
+  padding-right: 200px; 
 }
 
 .search-form {
-  margin-left: auto; /* Push form to the right */
+  margin-left: auto; 
 }
 
 .card {
