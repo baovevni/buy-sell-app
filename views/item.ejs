@@ -38,8 +38,9 @@
           <label class="description-label">
             <%= item.description %>
           </label>
-          <p class="card-text"><small class="text-muted">Price :$<%= item.price / 100 %></small></p>
+          <p class="card-text"><small class="text-muted">Price: $<%= item.price / 100 %></small></p>
           <div class="card-action">
+            <% if (item.user_id !== user) { %>
             <button type="submit" class="btn btn-primary">Buy</button>
             <form action="/messages" method="POST">
               <input type="hidden" name="item_id" value="<%= item.id %>">
@@ -48,6 +49,17 @@
                 cols="5"></textarea><br>
               <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
+            <% } else { %>
+              <form action="/items/<%= item.id %>/edit" method="POST">
+                <button type="submit" class="btn btn-primary">Edit</button>
+              </form>
+            <form action="/items/<%= item.id %>/delete" method="POST">
+              <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+            <form action="/items/<%= item.id %>/sold" method="POST">
+              <button type="submit" class="btn btn-primary">Mark as sold</button>
+            </form>
+            <% } %>
           </div>
         </div>
       </div>
