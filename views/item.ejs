@@ -27,17 +27,24 @@
       <h3 class="card-title">
         <%= item.name %>
       </h3>
-      <form action="/favorites/<%= item.id %>" method="POST" class="favorite-form">
-        <button type="submit" class="btn btn-danger logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
-      </form>
+
       <div class="row">
         <div class="col-md-4">
-          <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
+          <img class="itemImage" src="<%= item.imageurl %>" alt="<%= item.name %>">
         </div>
-        <div class="col-md-8 big-div">
-          <p class="card-text"><small class="text-muted">Description: <%= item.description %></p>
-          <p class="card-text"><small class="text-muted">Price: $<%= item.price / 100 %></small></p>
-          <p class="card-text"><small class="text-muted">Size: <%= item.size %></small></p>
+        <div class="item">
+          <% if (item.user_id !== user) { %>
+          <form action="/favorites/<%= item.id %>" method="POST" class="favorite-form">
+              <button type="submit" class="logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
+          </form>
+          <% } %>
+          <p class="desc"><small class="desciption">Description: <br> <%= item.description %></small></p>
+
+          <p class="price"><small class="price">Price: $<%= item.price / 100 %></small></p>
+
+
+          <p class="size"><small class="size">Size: <%= item.size %></small></p>
+
           <div class="card-action">
             <% if (item.user_id !== user) { %>
               <form action="/messages" method="POST">
@@ -45,21 +52,32 @@
                 <input type="hidden" name="owner_id" value="<%= item.user_id %>">
                 <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1"
                   cols="5"></textarea>
-                <button type="submit" class="btn btn-primary">Send Message</button><br>
-            <button type="submit" class="btn btn-primary">Buy</button>
+                <div class="container">
+                <button type="submit" class="btn btn-primary btn-large">Send Message</button><br>
+                </div>
+            <div class="container">
+            <button type="submit" class="btn btn-primary btn-large">Buy</button>
+            </div>
             </form>
             <% } else { %>
               <form action="/items/<%= item.id %>/edit" method="GET">
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <div class="container">
+                <button type="submit" class="btn btn-primary btn-large">Edit</button>
+                </div>
               </form>
             <form action="/items/<%= item.id %>/delete" method="POST">
-              <button type="submit" class="btn btn-primary">Delete</button>
+              <div class="container">
+              <button type="submit" class="btn btn-primary btn-large">Delete</button>
+              </div>
             </form>
             <form action="/items/<%= item.id %>/sold" method="POST">
-              <button type="submit" class="btn btn-primary">Mark as sold</button>
+              <div class="container">
+              <button type="submit" class="btn btn-primary btn-large">Mark as sold</button>
+              </div>
             </form>
 
             <% } %>
+
           </div>
         </div>
       </div>
@@ -81,3 +99,5 @@
 </body>
 
 </html>
+
+
