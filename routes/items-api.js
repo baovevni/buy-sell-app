@@ -146,6 +146,9 @@ router.post('/search', (req, res) => {
   userQueries.filterItems(minValue, maxValue)
     .then((items) => {
       res.render('main', { user: req.session.userId, items });
+    }).catch((err) => {
+      console.error(`Error search values for item are invalid :`, err);
+      res.status(500).send({ error: "An error occurred while searching for items" });
     });
 });
 
