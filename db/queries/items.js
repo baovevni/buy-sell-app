@@ -95,7 +95,7 @@ const markItemAsSold = function(id) {
     });
 };
 
-const editItem = function(name, description, size, price, imageURL, sold) {
+const editItem = function(name, description, size, price, imageURL, item_id) {
   return db.query(
     `UPDATE
     items
@@ -104,11 +104,10 @@ const editItem = function(name, description, size, price, imageURL, sold) {
     description = $2,
     size = $3,
     price = $4,
-    imageURL = $5,
-    sold = $6)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    imageURL = $5
+    WHERE id = $6
     RETURNING *;
-    `, [name, description, size, price, imageURL, sold])
+    `, [name, description, size, price, imageURL, item_id])
     .then(data => {
       return data.rows[0];
     })

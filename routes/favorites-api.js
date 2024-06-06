@@ -13,7 +13,6 @@ const userQueries = require('../db/queries/favorite_items');
 
 router.get('/', (req, res) => {
   const userId = req.session.userId;
-  console.log(userId);
   if (!userId) {
     console.error(err);
     return res.send(error);
@@ -23,7 +22,6 @@ router.get('/', (req, res) => {
     .getFavoriteItems(userId)
     .then((favorites) => {
       const unique = lodash.uniqBy(favorites, 'item_id');
-      console.log(unique);
       res.render('favourites', { user: req.session.userId, items: unique });
     })
     .catch((err) => {

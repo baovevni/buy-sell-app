@@ -66,10 +66,7 @@ router.get("/", (req, res) => {
 
 
 router.post("/login", (req, res) => {
-  console.log("Login route");
   const { email, password } = req.body;
-  console.log({email});
-  console.log(req.body);
   userQueries.getUserByEmail(email).then((user) => {
     if (!user) {
       return res.send({ error: "no user with that email" });
