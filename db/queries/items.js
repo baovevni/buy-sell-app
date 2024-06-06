@@ -103,7 +103,7 @@ const editItem = function(name, description, size, price, imageURL, item_id) {
     name = $1,
     description = $2,
     size = $3,
-    price = $4,
+    price = $4 * 100,
     imageURL = $5
     WHERE id = $6
     RETURNING *;
