@@ -6,21 +6,34 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const userQueries = require('../db/queries/items');
 const { min } = require('lodash');
 
+// Get items from database
+router.get("/", (req, res) => {
+  userQueries
+    .getUsersItems(req.session.userId)
+    .then((items) => res.render('my_items', { user: req.session.userId, items }))
+    .catch((err) => {
+      console.error(err);
+      res.send(err);
+    });
+});
+
+// Add a new item
 router.get('/add_item', (req, res) => {
   res.render('add_item', { user: req.session.userId });
 });
 
-router.post('/items', (req, res) => {
+router.post("/", (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
     return res.send({ error: "error" });
   }
-
   const newItem = req.body;
+  newItem.user_id = userId;
+
   userQueries
     .addItem(newItem)
     .then((item) => {
@@ -32,12 +45,15 @@ router.post('/items', (req, res) => {
     });
 });
 
+// Edit an item
 router.get('/:id/edit', (req, res) => {
   const itemId = req.params.id;
-  userQueries.getItem(itemId)
-  .then((item) => {
-  res.render('edit_item', { user: req.session.userId, item })
-  })
+
+  userQueries
+    .getItem(itemId)
+    .then((item) => {
+      res.render('edit_item', { user: req.session.userId, item })
+    })
 })
 
 router.post('/:id/edit_item', (req, res) => {
@@ -47,25 +63,27 @@ router.post('/:id/edit_item', (req, res) => {
     return res.send({ error: "user is not logged in" });
   }
 
-  // const item = req.body;
   const itemId = req.params.id;
-  const { name, description, size, price, imageURL } = req.body
+  const { name, description, size, price, imageURL } = req.body;
+
   userQueries
-  .editItem(name, description, size, price, imageURL, itemId)
-  .then((item) => {
-    res.redirect("/items");
-  })
-  .catch((e) => {
-    console.error(e);
-    res.send(e);
-  });
+    .editItem(name, description, size, price, imageURL, itemId)
+    .then((item) => {
+      res.redirect("/items");
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
 })
 
+// Delete item
 router.post('/:id/delete', (req, res) => {
   const itemId = req.params.id;
   const userId = req.session.userId;
 
-  userQueries.deleteItem(itemId)
+  userQueries
+    .deleteItem(itemId)
     .then((item) => {
       res.redirect("/items");
     })
@@ -75,11 +93,13 @@ router.post('/:id/delete', (req, res) => {
     });
 });
 
+// Retrieve an item from database
 router.get('/:id', (req, res) => {
   const itemId = req.params.id;
   const userId = req.session.userId;
 
-  userQueries.getItem(itemId)
+  userQueries
+    .getItem(itemId)
     .then((item) => {
       if (!item) {
         console.log(`Item with ID ${itemId} not found`);
@@ -93,42 +113,12 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// CREATE
-router.post("/", (req, res) => {
-  const userId = req.session.userId;
-  if (!userId) {
-    return res.send({ error: "error" });
-  }
-
-  const newItem = req.body;
-  newItem.user_id = userId;
-  userQueries
-    .addItem(newItem)
-    .then((item) => {
-      res.redirect("/items");
-    })
-    .catch((e) => {
-      console.error(e);
-      res.send(e);
-    });
-});
-
-// READ
-router.get("/", (req, res) => {
-  userQueries
-    .getUsersItems(req.session.userId)
-    .then((items) => res.render('my_items', { user:req.session.userId, items }))
-    .catch((err) => {
-      console.error(err);
-      res.send(err);
-    });
-});
-
-
+// Mark item as sold
 router.post('/:id/sold', (req, res) => {
   const itemId = req.params.id;
 
-  userQueries.markItemAsSold(itemId)
+  userQueries
+    .markItemAsSold(itemId)
     .then((item) => {
       res.redirect("/items");
     })
@@ -138,12 +128,31 @@ router.post('/:id/sold', (req, res) => {
     });
 });
 
+// Buy item button
+router.get('/:id/buy_item', (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    res.redirect("/users/login");
+    return res.send({ error: "user is not logged in" });
+  }
+  const itemId = req.params.id;
+
+  userQueries
+    .getItem(itemId)
+    .then((item) => {
+      res.render('buy_item', { user: req.session.userId, item });
+    })
+});
+
+// Filter items by price
 router.post('/search', (req, res) => {
   let minValue = req.body.min;
   let maxValue = req.body.max;
   minValue = minValue * 100;
   maxValue = maxValue * 100;
-  userQueries.filterItems(minValue, maxValue)
+
+  userQueries
+    .filterItems(minValue, maxValue)
     .then((items) => {
       res.render('main', { user: req.session.userId, items });
     }).catch((err) => {
@@ -151,6 +160,5 @@ router.post('/search', (req, res) => {
       res.status(500).send({ error: "An error occurred while searching for items" });
     });
 });
-
 
 module.exports = router;

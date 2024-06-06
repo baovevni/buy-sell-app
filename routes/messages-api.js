@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/messages');
 
+// Retrieve messages from database
 router.get('/', (req, res) => {
   userQueries.getMessages(req.session.userId)
     .then( messages => {
@@ -9,7 +10,13 @@ router.get('/', (req, res) => {
     });
 });
 
+// Post a new message
 router.post('/', (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    res.redirect("/users/login");
+    return res.send({ error: "user is not logged in" });
+  }
   const text = req.body.text;
   const item_id = req.body.item_id;
   const owner_id = req.body.owner_id;
@@ -19,6 +26,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// Delete message
 router.post('/delete', (req, res) => {
   const owner_id = req.body.user_id;
   const message_id = req.body.message_id;
@@ -27,7 +35,5 @@ router.post('/delete', (req, res) => {
       res.redirect("/messages");
     });
 });
-
-
 
 module.exports = router;
