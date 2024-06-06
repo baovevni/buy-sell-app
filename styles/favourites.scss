@@ -2,10 +2,11 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 120px; 
+  width: 120px;
   height: auto;
-  z-index: 999; 
+  z-index: 999;
 }
+
 .heart-overlay {
   position: absolute;
   top: 10px;
@@ -15,9 +16,9 @@
 .heart-icon {
   color: #f50f0f;
   font-size: 24px;
- 
+
 }
 
 .heart-icon:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
