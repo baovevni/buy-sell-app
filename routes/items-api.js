@@ -8,6 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/items');
+const { min } = require('lodash');
 
 router.get('/add_item', (req, res) => {
   res.render('add_item', { user: req.session.userId });
@@ -134,6 +135,17 @@ router.post('/:id/sold', (req, res) => {
     .catch((err) => {
       console.error(`Error marking item with ID ${itemId} as sold:`, err);
       res.status(500).send({ error: "An error occurred while marking the item as sold" });
+    });
+});
+
+router.post('/search', (req, res) => {
+  let minValue = req.body.min;
+  let maxValue = req.body.max;
+  minValue = minValue * 100;
+  maxValue = maxValue * 100;
+  userQueries.filterItems(minValue, maxValue)
+    .then((items) => {
+      res.render('main', { user: req.session.userId, items });
     });
 });
 
