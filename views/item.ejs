@@ -35,19 +35,18 @@
           <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
         </div>
         <div class="col-md-8 big-div">
-          <label class="description-label">
-            <%= item.description %>
-          </label>
+          <p class="card-text"><small class="text-muted">Description: <%= item.description %></p>
           <p class="card-text"><small class="text-muted">Price: $<%= item.price / 100 %></small></p>
+          <p class="card-text"><small class="text-muted">Size: <%= item.size %></small></p>
           <div class="card-action">
             <% if (item.user_id !== user) { %>
+              <form action="/messages" method="POST">
+                <input type="hidden" name="item_id" value="<%= item.id %>">
+                <input type="hidden" name="owner_id" value="<%= item.user_id %>">
+                <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1"
+                  cols="5"></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button><br>
             <button type="submit" class="btn btn-primary">Buy</button>
-            <form action="/messages" method="POST">
-              <input type="hidden" name="item_id" value="<%= item.id %>">
-              <input type="hidden" name="owner_id" value="<%= item.user_id %>">
-              <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1"
-                cols="5"></textarea><br>
-              <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
             <% } else { %>
               <form action="/items/<%= item.id %>/edit" method="POST">
