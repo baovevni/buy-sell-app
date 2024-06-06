@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -13,7 +12,6 @@
 
   <title>ITEMS</title>
 </head>
-
 
 <body>
   <%- include('partials/_header') %>
@@ -29,26 +27,7 @@
             </div>
           </div>
         </form>
-
       </div>
-
-
-
-
-      <!-- <div class="row justify-content-end">
-        <div class="col-md-6 offset-md-6">
-          <form class="form-inline search-form" method="POST" action="/items/search">
-            <div class="input-group">
-              <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price" name="min">
-              <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price" name="max">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">Search</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-      </div> -->
       <br>
       <div class="row box-containt">
         <% for (const item of items) { %>
@@ -69,9 +48,6 @@
         <% } %>
       </div>
     </div>
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
