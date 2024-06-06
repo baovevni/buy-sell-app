@@ -33,11 +33,12 @@
           <img class="itemImage" src="<%= item.imageurl %>" alt="<%= item.name %>">
         </div>
         <div class="item">
+          <% if (item.user_id !== user) { %>
           <form action="/favorites/<%= item.id %>" method="POST" class="favorite-form">
               <button type="submit" class="logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
           </form>
-
-          <p class="desc"><small class="desc">Description: <%= item.description %></small></p>
+          <% } %>
+          <p class="desc"><small class="desciption">Description: <br> <%= item.description %></small></p>
 
           <p class="price"><small class="price">Price: $<%= item.price / 100 %></small></p>
 

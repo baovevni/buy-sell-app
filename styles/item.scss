@@ -10,9 +10,6 @@
   padding: 20px;
 }
 
-.card-title {
-  margin-bottom: 10px;
-}
 
 .card-text {
   color: #555;
@@ -26,16 +23,6 @@
 
 .card-link:hover {
   text-decoration: underline;
-}
-.favorite-form {
-  position: relative;
-}
-
-.fa-heart {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #f50f0f;
 }
 
 
@@ -67,7 +54,195 @@
 }
 
 .card-title {
-  margin-left: 70px;
+  margin-left: 100px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #555;
+}
+
+.card-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+.card-img-top {
+  max-width: 250px;
+  height: auto;
+  float: left;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.description-label {
+  font-size: 18px;
+  color: #555;
+}
+.big-div {
+  font-size: 20px;
+}
+
+.item
+{
+  width: 500px;
+
+  margin-left: 650px;
+  margin-bottom: 25px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.itemImage {
+  margin-left: 90px;
+  width: 700px;
+  height: 700px;
+  margin-bottom: 25px;
+}
+
+.price {
+  margin-left: 10px;
+  margin-top: 200px;
+  font-size: 20px;
+}
+
+.form-control {
+
+  padding: 10px;
+  height: 100px;
+}
+
+.favorite-form {
+  margin-left: 350px;
+  padding-left: 100px;
+}
+
+.desc {
+  font-size: 20px;
+  padding-left: 0px;
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.size {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary:active {
+    background-color: #004085;
+    transform: scale(0.98);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.btn-large {
+    width: 850px;
+    height: 50px;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    height: 100%;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1628px){
+
+ .card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+
+.card-text {
+  color: #555;
+}
+
+.card-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+
+.card-img-top {
+  max-width: 250px;
+  height: auto;
+  float: left;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.description-label {
+  font-size: 18px;
+  color: #555;
+}
+.big-div {
+  font-size: 20px;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  margin-left: 100px;
   margin-bottom: 10px;
 }
 
@@ -107,8 +282,8 @@
 .item
 {
 
-  margin-left: 330px;
-
+  margin-left: 400px;
+  width: 400px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -117,14 +292,15 @@
 }
 
 .itemImage {
-  margin-left: 70px;
-  width: 700px;
-  height: 700px;
+  margin-left: 100px;
+  width: 500px;
+  height: 500px;
+  margin-bottom: 25px;
 }
 
 .price {
-  margin-left: 7px;
-  margin-top: 200px;
+  margin-left: 5px;
+  margin-top: 100px;
   font-size: 20px;
 }
 
@@ -134,19 +310,19 @@
 }
 
 .favorite-form {
-  margin-left: 700px;
+  margin-left: 240px;
   padding-left: 100px;
 }
 
 .desc {
   font-size: 20px;
-  margin-left: 7px;
-  margin-top: -30px;
+  margin-left: 10px;
+  margin-top: -10px;
 }
 
 .size {
   font-size: 20px;
-  margin-left: 7px;
+  margin-left: 5px;
   margin-top: 10px;
 }
 
@@ -179,8 +355,8 @@
 }
 
 .btn-large {
-    width: 820px;
-    height: 100px;
+    width: 830px;
+    height: 50px;
     font-size: 18px;
     padding: 10px 20px;
 }
@@ -193,39 +369,44 @@
     height: 100%;
 }
 
+}
+
  @media only screen and (max-width: 1023px) {
   .itemImage {
-    margin-left: 100px;
+    margin-left: 65px;
   }
 
   .card-title {
-  margin-left: 100px;
+  margin-left: 65px;
   margin-bottom: 10px;
   }
 
   .item {
-    margin-top: 10px;
-    margin-left: 40px;
+    width: 750px;
+    margin-top: 40px;
+    margin-left: 60px;
 
 
   }
 
   .favorite-form {
-
-    margin-left: 700px;
+    margin-top: 10px;
+    margin-left: 600px;
     padding-left: 100px;
+
   }
 
   .price {
-    margin-left: 180px;
+    margin-left: 5px;
   }
 
   .size {
-    margin-left: 190px;
+    margin-left: 5px;
   }
 
   .desc {
-    margin-left: 35px;
+
+    margin-left: 5px;
   }
 }
 
