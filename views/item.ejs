@@ -55,10 +55,15 @@
                 <div class="container">
                 <button type="submit" class="btn btn-primary btn-large">Send Message</button><br>
                 </div>
-            <div class="container">
-            <button type="submit" class="btn btn-primary btn-large">Buy</button>
-            </div>
             </form>
+
+            <form action="/items/<%= item.id %>/buy_item" method="GET">
+                <div class="container">
+                  <button type="submit" class="btn btn-primary btn-large">Buy</button>
+                </div>
+            </form>
+
+
             <% } else { %>
               <form action="/items/<%= item.id %>/edit" method="GET">
                 <div class="container">
