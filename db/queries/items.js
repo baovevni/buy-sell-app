@@ -7,7 +7,7 @@ const addItem = function(newItem) {
     `INSERT
     INTO items
     (name, description, size, price, imageURL, user_id)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    VALUES ($1, $2, $3, $4 * 100, $5, $6)
     RETURNING *;
     `, [newItem.name, newItem.description, newItem.size, newItem.price, newItem.imageURL, newItem.user_id])
     .then(data => {
