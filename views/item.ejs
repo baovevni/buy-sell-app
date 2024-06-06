@@ -14,7 +14,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title><%= item.name %></title>
+  <title>
+    <%= item.name %>
+  </title>
 </head>
 
 
@@ -28,37 +30,41 @@
         <%= item.name %>
       </h3>
       <form action="/favorites/<%= item.id %>" method="POST" class="favorite-form">
-        <button type="submit" class="btn btn-danger logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
+        <button type="submit" class="btn btn-danger logout"><i class="fa-solid fa-heart"
+            style="color: #f50f0f;"></i></button>
       </form>
       <div class="row">
         <div class="col-md-4">
           <img class="card-img-top" src="<%= item.imageurl %>" alt="<%= item.name %>">
         </div>
         <div class="col-md-8 big-div">
-          <p class="card-text"><small class="text-muted">Description: <%= item.description %></p>
+          <p class="card-text"><small class="text-muted">Description: <%= item.description %>
+          </p>
           <p class="card-text"><small class="text-muted">Price: $<%= item.price / 100 %></small></p>
           <p class="card-text"><small class="text-muted">Size: <%= item.size %></small></p>
           <div class="card-action">
-            <% if (item.user_id !== user) { %>
+            <% if (item.user_id !==user) { %>
               <form action="/messages" method="POST">
                 <input type="hidden" name="item_id" value="<%= item.id %>">
                 <input type="hidden" name="owner_id" value="<%= item.user_id %>">
                 <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1"
                   cols="5"></textarea>
                 <button type="submit" class="btn btn-primary">Send Message</button><br>
-            <button type="submit" class="btn btn-primary">Buy</button>
-            </form>
-            <% } else { %>
-              <form action="/items/<%= item.id %>/edit" method="GET">
-                <button type="submit" class="btn btn-primary">Edit</button>
               </form>
-            <form action="/items/<%= item.id %>/delete" method="POST">
-              <button type="submit" class="btn btn-primary">Delete</button>
-            </form>
-            <form action="/items/<%= item.id %>/sold" method="POST">
-              <button type="submit" class="btn btn-primary">Mark as sold</button>
-            </form>
-            <% } %>
+              <form action="/items/<%= item.id %>/buy_item" method="GET">
+                <button type="submit" class="btn btn-primary">Buy</button>
+              </form>
+              <% } else { %>
+                <form action="/items/<%= item.id %>/edit" method="GET">
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+                <form action="/items/<%= item.id %>/delete" method="POST">
+                  <button type="submit" class="btn btn-primary">Delete</button>
+                </form>
+                <form action="/items/<%= item.id %>/sold" method="POST">
+                  <button type="submit" class="btn btn-primary">Mark as sold</button>
+                </form>
+                <% } %>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const userQueries = require('../db/queries/items');
 const { min } = require('lodash');
 
@@ -35,9 +35,9 @@ router.post('/items', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const itemId = req.params.id;
   userQueries.getItem(itemId)
-  .then((item) => {
-  res.render('edit_item', { user: req.session.userId, item })
-  })
+    .then((item) => {
+      res.render('edit_item', { user: req.session.userId, item })
+    })
 })
 
 router.post('/:id/edit_item', (req, res) => {
@@ -51,14 +51,14 @@ router.post('/:id/edit_item', (req, res) => {
   const itemId = req.params.id;
   const { name, description, size, price, imageURL } = req.body
   userQueries
-  .editItem(name, description, size, price, imageURL, itemId)
-  .then((item) => {
-    res.redirect("/items");
-  })
-  .catch((e) => {
-    console.error(e);
-    res.send(e);
-  });
+    .editItem(name, description, size, price, imageURL, itemId)
+    .then((item) => {
+      res.redirect("/items");
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
 })
 
 router.post('/:id/delete', (req, res) => {
@@ -117,7 +117,7 @@ router.post("/", (req, res) => {
 router.get("/", (req, res) => {
   userQueries
     .getUsersItems(req.session.userId)
-    .then((items) => res.render('my_items', { user:req.session.userId, items }))
+    .then((items) => res.render('my_items', { user: req.session.userId, items }))
     .catch((err) => {
       console.error(err);
       res.send(err);
@@ -136,6 +136,19 @@ router.post('/:id/sold', (req, res) => {
       console.error(`Error marking item with ID ${itemId} as sold:`, err);
       res.status(500).send({ error: "An error occurred while marking the item as sold" });
     });
+});
+
+router.get('/:id/buy_item', (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    res.redirect("/users/login");
+    return res.send({ error: "user is not logged in" });
+  }
+  const itemId = req.params.id;
+  userQueries.getItem(itemId)
+    .then((item) => {
+      res.render('buy_item', { user: req.session.userId, item });
+    })
 });
 
 router.post('/search', (req, res) => {
