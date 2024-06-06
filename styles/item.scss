@@ -72,11 +72,11 @@
   height: auto;
 }
 
-.favorite-form {
-  margin: 20px auto;
-  padding: 0;
-  text-align: center;
-}
+// .favorite-form {
+//   margin: 20px auto;
+//   padding: 0;
+//   text-align: center;
+// }
 
 .desc {
   font-size: 20px;
@@ -124,7 +124,6 @@
   padding: 10px 20px;
 }
 
-
 .container {
   display: flex;
   justify-content: center;
@@ -133,7 +132,20 @@
   height: 100%;
 }
 
+.heart-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 
+.heart-icon {
+  color: #f50f0f;
+  font-size: 24px;
+}
+
+.heart-icon:hover {
+  transform: scale(1.2);
+}
 
 @media only screen and (min-width: 1024px)  {
 
@@ -154,10 +166,10 @@
     margin-left: 600px;
   }
 
-  .favorite-form {
-    margin-top: 5px;
-    margin-left: 350px;
-  }
+  // .favorite-form {
+  //   margin-top: 5px;
+  //   margin-left: 350px;
+  // }
 }
 
 @media only screen and (max-width: 1023px) {
