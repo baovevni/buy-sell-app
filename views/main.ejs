@@ -35,6 +35,12 @@
           <div class="col-md-3 mb-4">
             <div class="card h-100 border border-primary rounded shadow">
               <a href="/items/<%= item.id %>">
+                <% if (item.sold) {%>
+                  <div class="sold-out-overlay">
+                    
+                    <img class="sold-out-image" src="/docs/sold.png" alt="Sold Out" >
+                  </div>
+                <% } %>
               <img class="card-img-top img-fluid" src="<%= item.imageurl %>" alt="<%= item.name %>"
                 style="height: 200px; object-fit: cover;">
               <div class="card-body">

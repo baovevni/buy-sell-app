@@ -12,7 +12,6 @@ const path = require('path');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.use('/docs', express.static(path.join(__dirname, 'docs')));
 
 app.set('view engine', 'ejs');
 
@@ -34,6 +33,7 @@ app.use(cookieSession({
   name: 'session',
   keys: ['qWeRtY!@#456'],
 }));
+app.use('/docs', express.static(path.join(__dirname, 'docs')));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -62,10 +62,10 @@ app.get('/', (req, res) => {
 
 app.get('/main', (req, res) => {
   itemHelpers.getItems()
-  .then((items) => {
-    console.log(items);
-    res.render('main',{ user: req.session.userId, items: items });
-  })
+    .then((items) => {
+      console.log(items);
+      res.render('main', { user: req.session.userId, items: items });
+    })
 });
 
 app.listen(PORT, () => {
