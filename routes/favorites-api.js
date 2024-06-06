@@ -15,7 +15,8 @@ router.get('/', (req, res) => {
   const userId = req.session.userId;
   console.log(userId);
   if (!userId) {
-    return res.send({ error: "error" });
+    console.error(err);
+    return res.send(error);
   }
 
   userQueries
@@ -50,7 +51,8 @@ router.post("/:id", (req, res) => {
   const userId = req.session.userId;
   const itemId = req.params.id;
   if (!userId) {
-    return res.send({ error: "error" });
+    res.redirect("/users/login");
+    return res.send({ error: "user is not logged in" });
   }
 
   userQueries
