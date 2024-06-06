@@ -14,14 +14,28 @@ router.get("/login", (req, res) => {
   res.render('login', { user: req.session.userId });
 });
 
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  userQueries.getUserByEmail(email).then((user) => {
+    if (!user) {
+      return res.send({ error: "no user with that email" });
+    }
+    console.log(user.password);
+    if (password !== user.password) {
+      return res.send({ error: "error" });
+    }
+
+    req.session.userId = user.id;
+    res.redirect("/main");
+
+  });
+});
+
+// Register a user
 router.get('/register', (req, res) => {
   res.render('register', { user: req.session.userId });
 });
-// router.post('/register', (req, res) => {
-//   res.render('register', { user: req.session.userId });
-// });
 
-// CREATE
 router.post("/", (req, res) => {
   const user = req.body;
   userQueries
@@ -37,7 +51,7 @@ router.post("/", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// Return information about the current user (based on cookie value)
+// Get user by User ID
 router.get("/", (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
@@ -64,43 +78,10 @@ router.get("/", (req, res) => {
 
 
 
-
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  userQueries.getUserByEmail(email).then((user) => {
-    if (!user) {
-      return res.send({ error: "no user with that email" });
-    }
-    console.log(user.password);
-    if (password !== user.password) {
-      return res.send({ error: "error" });
-    }
-
-    req.session.userId = user.id;
-    res.redirect("/main");
-
-  });
-});
-
-// Log a user out
+// Logout a user
 router.post("/logout", (req, res) => {
   req.session.userId = null;
   res.redirect("/users/login");
 });
 
-// READ
-router.get('/', (req, res) => {
-  userQueries
-    .getUsers()
-    .then(users => {
-      res.json({ users });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-});
-
 module.exports = router;
-
