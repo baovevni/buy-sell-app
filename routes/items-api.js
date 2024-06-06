@@ -8,6 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/items');
+const { min } = require('lodash');
 
 router.get('/add_item', (req, res) => {
   res.render('add_item', { user: req.session.userId });
@@ -30,6 +31,35 @@ router.post('/items', (req, res) => {
       res.send(e);
     });
 });
+
+router.get('/:id/edit', (req, res) => {
+  const itemId = req.params.id;
+  userQueries.getItem(itemId)
+  .then((item) => {
+  res.render('edit_item', { user: req.session.userId, item })
+  })
+})
+
+router.post('/:id/edit_item', (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    res.redirect("/users/login");
+    return res.send({ error: "user is not logged in" });
+  }
+
+  // const item = req.body;
+  const itemId = req.params.id;
+  const { name, description, size, price, imageURL } = req.body
+  userQueries
+  .editItem(name, description, size, price, imageURL, itemId)
+  .then((item) => {
+    res.redirect("/items");
+  })
+  .catch((e) => {
+    console.error(e);
+    res.send(e);
+  });
+})
 
 router.post('/:id/delete', (req, res) => {
   const itemId = req.params.id;
@@ -55,19 +85,12 @@ router.get('/:id', (req, res) => {
         console.log(`Item with ID ${itemId} not found`);
         return res.status(404).send("Item not found");
       }
-
-      console.log(`Item found: ${JSON.stringify(item)}`);
       res.render('item', { user: userId, item });
     })
     .catch((err) => {
       console.error(`Error retrieving item with ID ${itemId}:`, err);
       res.status(500).send({ error: "An error occurred while retrieving the item" });
     });
-});
-
-
-router.get('/new_item', (req, res) => {
-  res.render('new_item', { user: req.session.userId });
 });
 
 // CREATE
@@ -79,7 +102,6 @@ router.post("/", (req, res) => {
 
   const newItem = req.body;
   newItem.user_id = userId;
-  console.log(newItem);
   userQueries
     .addItem(newItem)
     .then((item) => {
@@ -113,6 +135,17 @@ router.post('/:id/sold', (req, res) => {
     .catch((err) => {
       console.error(`Error marking item with ID ${itemId} as sold:`, err);
       res.status(500).send({ error: "An error occurred while marking the item as sold" });
+    });
+});
+
+router.post('/search', (req, res) => {
+  let minValue = req.body.min;
+  let maxValue = req.body.max;
+  minValue = minValue * 100;
+  maxValue = maxValue * 100;
+  userQueries.filterItems(minValue, maxValue)
+    .then((items) => {
+      res.render('main', { user: req.session.userId, items });
     });
 });
 

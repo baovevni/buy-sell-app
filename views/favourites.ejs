@@ -13,19 +13,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/styles/main.css" />
 
-    <title>MY_ITEMS</title>
+    <title>FAVORITES</title>
   </head>
 
 
   <body>
     <%- include('partials/_header') %>
 
-    <br><br>
+    <div class="container mt-3  rounded p-0 custom-padding">
+      <div class="row">
+        <div class="col-md-6 offset-md-6">
+          <form class="form-inline">
+            <div class="input-group">
+              <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price">
+              <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    <br>
     <div class="row">
       <% for (let item of items) { %>
         <div class="col-md-3 mb-4">
           <div class="card h-100 border border-primary rounded shadow">
             <a href="/items/<%= item.id %>">
+              <form action="/favorites/<%= item.id %>/delete" method="POST">
+                <button type="submit" class="btn btn-danger logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
+              </form>
               <img class="card-img-top img-fluid" src="<%= item.imageurl %>" alt="<%= item.name %>" style="height: 200px; object-fit: cover;">
               <div class="card-body">
                 <h5 class="card-title text-primary mb-0">
@@ -34,9 +51,6 @@
                 <p class="card-text text-secondary"><small>Price: $<%= item.price / 100 %></small></p>
               </div>
             </a>
-            <form action="/favorites/<%= item.id %>/delete" method="POST">
-              <button type="submit" class="btn btn-danger logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
-            </form>
           </div>
         </div>
       <% } %>

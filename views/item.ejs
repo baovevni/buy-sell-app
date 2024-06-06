@@ -14,7 +14,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>MY_ITEMS</title>
+  <title><%= item.name %></title>
 </head>
 
 
@@ -28,7 +28,7 @@
         <%= item.name %>
       </h3>
       <form action="/favorites/<%= item.id %>" method="POST" class="favorite-form">
-        <button type="submit" class="btn "><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
+        <button type="submit" class="btn btn-danger logout"><i class="fa-solid fa-heart" style="color: #f50f0f;"></i></button>
       </form>
       <div class="row">
         <div class="col-md-4">
@@ -49,7 +49,7 @@
             <button type="submit" class="btn btn-primary">Buy</button>
             </form>
             <% } else { %>
-              <form action="/items/<%= item.id %>/edit" method="POST">
+              <form action="/items/<%= item.id %>/edit" method="GET">
                 <button type="submit" class="btn btn-primary">Edit</button>
               </form>
             <form action="/items/<%= item.id %>/delete" method="POST">

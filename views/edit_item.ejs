@@ -11,7 +11,7 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/layout.css" />
 
-  <title>ADD ITEM</title>
+  <title>EDIT <%= item.name %></title>
 </head>
 
 
@@ -21,30 +21,30 @@
     <div class="container">
       <div class="card">
         <div class="card-body">
-          <form method="post" action="/items">
+          <form method="post" action="/items/<%= item.id %>/edit_item">
             <div class="form-group">
               <label for="inputAddress">Item Name</label>
-              <input name="name" type="text" class="form-control" id="inputName">
+              <input name="name" type="text" class="form-control" id="inputName" value="<%= item.name %>">
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Description</label>
-              <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"><%= item.description %></textarea>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Price</label>
-                <input name="price" type="number" class="form-control" id="inputEmail4">
+                <input name="price" type="number" class="form-control" id="inputEmail4" value="<%= item.price / 100 %>">
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Size</label>
-                <input name="size" type="number" class="form-control" id="inputPassword4">
+                <input name="size" type="number" class="form-control" id="inputPassword4" value="<%= item.size %>">
               </div>
             </div>
             <div class="form-group">
               <label for="inputPassword4">Image Url</label>
-              <input name="imageURL" type="url" class="form-control" id="inputPassword4">
+              <input name="imageURL" type="url" class="form-control" id="inputPassword4" value="<%= item.imageurl %>">
             </div>
-            <button type="submit" class="btn btn-dark">Add Item</button>
+            <button type="submit" class="btn btn-dark">Edit Item</button>
           </form>
         </div>
       </div>
