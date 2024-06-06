@@ -18,10 +18,26 @@
 <body>
   <%- include('partials/_header') %>
 
-    <div class="container mt-3  rounded p-0 custom-padding">
-      <div class="row">
+    <div class="container-fluid mt-3  rounded  no-padding">
+      <div class = "row justify-content-end search-form-container">
+        <form class="form-inline search-form" method="POST" action="/items/search">
+          <div class="input-group">
+            <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price" name="min">
+            <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price" name="max">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+
+
+
+      <!-- <div class="row justify-content-end">
         <div class="col-md-6 offset-md-6">
-          <form class="form-inline" method="POST" action="/items/search">
+          <form class="form-inline search-form" method="POST" action="/items/search">
             <div class="input-group">
               <input class="form-control mr-sm-2" type="search" placeholder="Min Price" aria-label="Min Price" name="min">
               <input class="form-control mr-sm-2" type="search" placeholder="Max Price" aria-label="Max Price" name="max">
@@ -31,9 +47,10 @@
             </div>
           </form>
         </div>
-      </div>
+        
+      </div> -->
       <br>
-      <div class="row">
+      <div class="row box-containt">
         <% for (const item of items) { %>
           <div class="col-md-3 mb-4">
             <div class="card h-100 border border-primary rounded shadow">
