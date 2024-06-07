@@ -28,19 +28,20 @@
           <div class="form-box">
               <form>
                   <div class="form-group">
+                    <form action="/messages" method="POST">
                       <label for="exampleFormControlTextarea1">Reply:</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1"
-                          rows="3"></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" ></textarea>
                   </div>
                   <div class="button-group">
-                      <button type="submit" class="btn btn-primary btn-reply">Reply</button>
+                    <button type="submit" class="btn btn-primary" cols="3">Reply</button>
+                  </form>
                       <form action="/messages/delete" method="POST">
                           <input type="hidden" name="message_id" value="<%= message.id %>">
                           <input type="hidden" name="user_id" value="<%= message.user_id %>">
                           <button type="submit" class="btn btn-danger btn-delete">Delete</button>
                       </form>
                   </div>
-              </form>
+
           </div>
       </div>
   </div>
