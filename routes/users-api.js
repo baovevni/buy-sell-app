@@ -16,7 +16,9 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
-  userQueries.getUserByEmail(email).then((user) => {
+  userQueries
+  .getUserByEmail(email)
+  .then((user) => {
     if (!user) {
       return res.send({ error: "no user with that email" });
     }
@@ -36,17 +38,13 @@ router.get('/register', (req, res) => {
   res.render('register', { user: req.session.userId });
 });
 
-router.post("/", (req, res) => {
-  const user = req.body;
+router.post("/register", (req, res) => {
+  const {name, email, password, phone} = req.body;
   userQueries
-    .addUser(user)
+    .addUser(name, email, password, phone)
     .then((user) => {
-      if (!user) {
-        return res.send({ error: "error" });
-      }
-
       req.session.userId = user.id;
-      res.send("🤗");
+      res.redirect("/main");
     })
     .catch((err) => res.send(err));
 });

@@ -32,6 +32,9 @@
     </div>
         <br>
         <div class="row box-containt">
+          <% if (items.length === 0) { %>
+            <h3 style="color: #2c333a; justify-content: center; display: flex">NO ITEMS</h3>
+         <% } else { %>
           <% for (const item of items) { %>
             <div class="col-md-3 mb-4">
               <div class="card h-100 border border-primary rounded shadow">
@@ -53,6 +56,7 @@
               </div>
             </div>
             <% } %>
+          <% } %>
         </div>
       </div>
 
