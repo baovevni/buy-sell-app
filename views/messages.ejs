@@ -19,6 +19,9 @@
   <%- include('partials/_header') %>
 
 <div class="container mt-3">
+  <% if (messages.length === 0) { %>
+    <h3 style="color: #2c333a; justify-content: center; display: flex">NO MESSAGES</h3>
+ <% } else { %>
   <% for (const message of messages) { %>
   <div class="card message-card">
       <div class="card-body">
@@ -45,6 +48,7 @@
           </div>
       </div>
   </div>
+  <% } %>
   <% } %>
 </div>
 
