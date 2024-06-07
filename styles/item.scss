@@ -48,6 +48,7 @@
 
 .item {
   width: 500px;
+  min-height: 550px;
   margin-left: 400px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -132,10 +133,17 @@
   height: 100%;
 }
 
-.heart-overlay {
-  position: absolute;
+.item-card .heart-overlay {
+  display: flex;
+  justify-content: flex-end;
   top: 10px;
   right: 10px;
+}
+
+.item-description-card {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 .heart-icon {
@@ -145,6 +153,7 @@
 
 .heart-icon:hover {
   transform: scale(1.2);
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 1024px)  {
@@ -161,8 +170,10 @@
   }
 
   .item {
+    display: flex;
+    flex-direction: column;
     width: 400px;
-    height: 550px;
+    min-height: 550px;
     margin-left: 600px;
   }
 
@@ -175,6 +186,7 @@
 @media only screen and (max-width: 1023px) {
   .item {
     width: 86%;
+    min-height: 550px;
     margin: 40px auto 25px auto;
   }
 

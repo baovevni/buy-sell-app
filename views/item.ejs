@@ -33,7 +33,9 @@
           <img class="itemImage" src="<%= item.imageurl %>" alt="<%= item.name %>">
         </div>
         <div class="item">
+          <div class="item-description-card">
         <% if (item.user_id !== user) { %>
+          <div class="item-card">
             <div class="heart-overlay">
               <form action="/favorites/<%= item.id %>" method="POST">
                 <button type="submit" class="heart-icon" style="background-color: transparent; border: none;">
@@ -41,9 +43,10 @@
                 </button>
               </form>
             </div>
+          </div>
           <% } %>
           <p class="desc"><small class="desciption">Description: <br> <%= item.description %></small></p>
-
+        </div>
           <p class="price"><small class="price">Price: $<%= item.price / 100 %></small></p>
 
 

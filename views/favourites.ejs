@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/hover.css" />
     <link rel="stylesheet" href="/styles/favourites.css" />
-    
+
 
     <title>FAVORITES</title>
   </head>
@@ -40,19 +40,18 @@
         <div class="col-md-3 mb-4">
           <div class="card h-100 border border-primary rounded shadow">
             <a href="/items/<%= item.id %>">
+              <div class="heart-overlay">
+                <form action="/favorites/<%= item.id %>/delete" method="POST">
+                  <button type="submit" class="heart-icon" style="background-color: transparent; border: none;">
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+                </form>
+              </div>
               <% if (item.sold) { %>
                 <div class="sold-out-overlay">
                   <img class="sold-out-image" src="/docs/sold.png" alt="Sold Out">
                 </div>
-              <% } else { %>
-                <div class="heart-overlay">
-                  <form action="/favorites/<%= item.id %>/delete" method="POST">
-                    <button type="submit" class="heart-icon" style="background-color: transparent; border: none;">
-                      <i class="fa-solid fa-heart"></i>
-                    </button>
-                  </form>
-                </div>
-              <% } %>
+                <% } %>
               <img class="card-img-top img-fluid" src="<%= item.imageurl %>" alt="<%= item.name %>" style="height: 200px; object-fit: cover;">
               <div class="card-body">
                 <h5 class="card-title text-primary mb-0">
@@ -65,7 +64,7 @@
         </div>
       <% } %>
     </div>
-        
+
 
 
 
