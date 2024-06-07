@@ -53,7 +53,7 @@ const filterItems = function(minPrice, maxPrice) {
     WHERE price >= $1
     AND
     price <= $2
-    ORDER BY id DESC
+    ORDER BY price DESC
     LIMIT 8;`, [minPrice, maxPrice])
     .then(data => {
       return data.rows;
